@@ -15,7 +15,7 @@ export const LinksPage = () => {
         Authorization: `Bearer ${token}`
       })
    
-      setLinks(reports[0].reports)
+      setLinks(reports)
     } catch (e) {}
   }, [token, request])
 
@@ -29,7 +29,11 @@ export const LinksPage = () => {
 
   return (
     <>
-      {!loading && <Table data={links} />}
+      {!loading && 
+      links.map((table) => {
+        return <Table data={table.reports} />
+      })
+      }
     </>
   )
 }

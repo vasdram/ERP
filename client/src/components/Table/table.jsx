@@ -4,7 +4,8 @@ import styles from './table.module.css';
 export const Table = ({data}) => {
    
     return(
-        <table style={{fontSize: "12px"}} className="">
+        <div className="row">
+        <table style={{fontSize: "12px"}} className={styles.table}>
              <thead>
                 <tr>
                 <th scope="col">#</th>
@@ -38,5 +39,6 @@ export const Table = ({data}) => {
                 </tr>
             })}
         </table>
+        </div>
     )
 }
