@@ -1,6 +1,6 @@
 {
-  "port": 5000,
+  "port": 80,
   "jwtSecret": "bla bla bla bla",
   "mongoUri": "mongodb+srv://vakozlov:qwerty12345@cluster0.adtry.azure.mongodb.net/erpapp?retryWrites=true&w=majority",
-  "baseUrl": "http://localhost:5000"
+  "baseUrl": "http://dev-bss.ru"
 }
