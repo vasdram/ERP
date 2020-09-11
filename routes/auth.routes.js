@@ -62,7 +62,7 @@ router.post(
         message: 'Некорректный данные при входе в систему'
       })
     }
-
+    
     const {email, password} = req.body
 
     const user = await User.findOne({ email })
