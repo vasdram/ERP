@@ -1,7 +1,9 @@
 <template>
     <div class="wrapper ">
         <Uploads />
-        <Table />
+        <div class="table-wrapper"  v-if="report.length > 0">
+            <Table :report="report" />
+        </div>
     </div>
 </template>
 
@@ -17,7 +19,11 @@
 import Uploads from "../components/Uploads"
 import Table from "../components/Table"
 export default {
-   
+    computed: {
+        report() {
+            return this.$store.state.reports
+        } 
+    },
     components: {
         Uploads, Table
     }
