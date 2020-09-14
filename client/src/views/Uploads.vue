@@ -18,6 +18,7 @@
 <script>
 import Uploads from "../components/Uploads"
 import Table from "../components/Table"
+
 export default {
     computed: {
         report() {

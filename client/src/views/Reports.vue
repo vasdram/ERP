@@ -22,7 +22,6 @@ import Table from "../components/Table"
       }})
       
       this.reports = reports.data
-      console.log("----reports", reports.data)
     },
 
     components: {
