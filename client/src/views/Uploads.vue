@@ -1,8 +1,8 @@
 <template>
     <div class="wrapper ">
         <Uploads />
-        <div class="table-wrapper"  v-if="report.length > 0">
-            <Table :report="report" />
+        <div class="table-wrapper"  v-if="data.reports && data.reports.length > 0">
+            <Table :id="data['_id']" :report="data.reports" />
         </div>
     </div>
 </template>
@@ -21,8 +21,8 @@ import Table from "../components/Table"
 
 export default {
     computed: {
-        report() {
-            return this.$store.state.reports
+        data() {
+            return this.$store.state.data
         } 
     },
     components: {

@@ -8,12 +8,12 @@ const auth = require('../middleware/auth.middleware')
 
 
 
-router.post('/getUserInfo', async(req,res) => {
+router.get('/getUserInfo', auth, async(req,res) => {
   
   
   const { email } = req.body
   try {
-    const user = await User.findOne({ email })
+    const user = await User.findOne({ _id: req.user.userId })
     res.json({user: {fname: user.fname, lname: user.lname, company: user.company, email: user.email, balance: user.balance}})
   } catch(e) {
     res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })

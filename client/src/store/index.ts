@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    reports: [],
+    data: {},
     userInfo: {
       email: "",
       fname: "",
@@ -16,7 +16,7 @@ export default new Vuex.Store({
   },
   mutations: {
     setReports(state, data) {
-      state.reports = data
+      state.data = data
     },
     setUser(state, data) {
       state.userInfo = data

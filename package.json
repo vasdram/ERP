@@ -29,7 +29,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.8.1",
     "node-sass": "^4.14.1",
-    "shortid": "^2.2.15"
+    "shortid": "^2.2.15",
+    "uuid": "^8.3.0"
   },
   "devDependencies": {
     "concurrently": "^5.0.2",

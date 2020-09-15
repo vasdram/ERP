@@ -19,7 +19,7 @@ const getData = (arr) => {
     i.map((item) => {
       if( item.indexOf("=") === -1 ) return;
       const index = item.indexOf("=") 
-  
+      o["date"] = new Date
       o[item.slice(0, index)] = item.slice(index + 1)
     })
     return o

@@ -17,9 +17,9 @@ import Navbar from "../components/Navbar"
 import axios from "axios"
 export default {
   async mounted() {
-    const res = await axios.post('/api/user/getUserInfo', {headers: 
-        {Authorization: `Bearer ${JSON.parse(localStorage.getItem("userData")).token}`
-      }})
+    const res = await axios.get('/api/user/getUserInfo', {headers: 
+        {Authorization: `Bearer ${JSON.parse(localStorage.getItem("userData")).token}`}
+        })
     this.$store.commit('setUser', res.data.user)
   },
   components: {

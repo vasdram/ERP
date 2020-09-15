@@ -1,13 +1,13 @@
 <template>
   <div>
     <div class="table-head">
-        <button class="btn btn-primary mr-4">Добавить отчет</button>
-        <button class="btn btn-primary">Удалить таблицу</button>
+        <button class="btn btn-primary mr-4" v-on:click="isShowFormHandler">Добавить отчет</button>
+        <button class="btn btn-primary" v-on:click="deleteTable">Удалить таблицу</button>
     </div>
     <div>
-      <AddReportForm />
+      <AddReportForm :id="id" v-if="isShowForm"/>
     </div>
-    <table class="table">
+    <table class="table" :id="id">
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -27,7 +27,7 @@
       </thead>
       <tr v-for="(row, idx) in report" :key="row['Номер']">
         <th scope="row">{{idx++}}</th>
-        <td contenteditable="true">10.09.2020</td>
+        <td contenteditable="true">{{row["date"].slice(0, 10)}}</td>
         <td contenteditable="true">{{row["Номер"]}}</td>
         <td contenteditable="true">{{row["ВсегоПоступило"]}}</td>
         <td contenteditable="true">{{row["Плательщик"]}}</td>
@@ -60,9 +60,26 @@
 }
 </style>
 <script>
+import Axios from 'axios';
 import AddReportForm from "./AddReportForm";
 export default {
-  props: ["report"],
+  data() {
+    return {
+      isShowForm: false
+    }
+  },
+  methods: {
+    isShowFormHandler() {
+      this.isShowForm = !this.isShowForm
+    },
+    deleteTable() {
+       Axios.post("/api/table/delete", {id: this.id}, {headers: {
+                Authorization: `Bearer ${JSON.parse(localStorage.getItem("userData")).token}`
+            }
+        })
+    }
+  },
+  props: ["report", "id"],
   components: {AddReportForm}
 };
 </script>

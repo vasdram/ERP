@@ -51,32 +51,52 @@
       </div>
     </div>
     <div>
-      <button class="btn btn-primary">Добавить</button>
+      <button class="btn btn-primary" v-on:click.prevent="addReport">Добавить</button>
     </div>
   </form>
 </template>
 
 <script>
+import Axios from 'axios'
 export default {
+  props:["id"],
   data() {
     return {
-      date,
-      number,
-      coming,
-      contractor,
-      consumption,
-      paymentDescription,
-      VATsign,
-      commission,
-      amountCommission,
-      paymentCategories,
-      operator,
-      comment,
+      date: "",
+      number: "",
+      coming: "",
+      contractor: "",
+      consumption: "",
+      paymentDescription: "",
+      VATsign: "",
+      commission: "",
+      amountCommission: "",
+      paymentCategories: "",
+      operator: "",
+      comment: "",
     }
   },
   methods: {
     addReport() {
-      
+      const formData = {
+        id: this.id,
+        date: this.date,
+        number: this.number,
+        coming: this.coming,
+        contractor: this.contractor,
+        consumption: this.consumption,
+        paymentDescription: this.paymentDescription,
+        VATsign: this.VATsign,
+        commission: this.commission,
+        amountCommission: this.amountCommission,
+        paymentCategories: this.paymentCategories,
+        operator: this.operator,
+        comment: this.comment,
+      }
+      Axios.post("/api/table/addReport", formData, {headers: {
+                Authorization: `Bearer ${JSON.parse(localStorage.getItem("userData")).token}`
+            }
+        })
     }
   }
 }
