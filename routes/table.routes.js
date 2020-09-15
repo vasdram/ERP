@@ -76,6 +76,10 @@ router.post('/upload', auth, (req, res, next) => {
 });
 
 
+router.post('/addReport', auth, async (req, res) => {
+  
+})
+
 
 router.get('/', auth, async (req, res) => {
 try {

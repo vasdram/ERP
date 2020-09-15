@@ -4,6 +4,9 @@
         <button class="btn btn-primary mr-4">Добавить отчет</button>
         <button class="btn btn-primary">Удалить таблицу</button>
     </div>
+    <div>
+      <AddReportForm />
+    </div>
     <table class="table">
       <thead>
         <tr>
@@ -57,7 +60,9 @@
 }
 </style>
 <script>
+import AddReportForm from "./AddReportForm";
 export default {
   props: ["report"],
+  components: {AddReportForm}
 };
 </script>

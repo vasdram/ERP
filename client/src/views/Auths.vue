@@ -69,8 +69,8 @@ import axios from 'axios'
           userId: data.userId, token: data.token
         }))
 
-        const res = await axios.post('/api/user/getUserInfo', {email: this.email})
-        this.$store.commit('setUser', res.data.user)
+        // const res = await axios.post('/api/user/getUserInfo', {email: this.email})
+        // this.$store.commit('setUser', res.data.user)
         this.$router.push("/")
       },
       async signIn() {
