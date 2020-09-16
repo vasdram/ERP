@@ -15,12 +15,12 @@
 <script>
 import Navbar from "../components/Navbar"
 import axios from "axios"
+import {mapActions} from 'vuex'
 export default {
-  async mounted() {
-    const res = await axios.get('/api/user/getUserInfo', {headers: 
-        {Authorization: `Bearer ${JSON.parse(localStorage.getItem("userData")).token}`}
-        })
-    this.$store.commit('setUser', res.data.user)
+  methods: mapActions(["getReports", "getUser"]),
+  mounted() {
+    this.getUser();    
+    this.getReports();    
   },
   components: {
     Navbar

@@ -38,7 +38,7 @@ export default {
             }
         })
 
-     this.$store.commit('setReports', res.data)
+     this.$store.commit('setReportOne', res.data)
     },
     handleFileUpload() {
       this.file = this.$refs.file.files[0];

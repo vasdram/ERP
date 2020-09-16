@@ -51,12 +51,9 @@
 }
 </style>
 <script>
+import {mapGetters} from 'vuex'
 export default {
-  computed: {
-        userInfo() {
-            return this.$store.state.userInfo
-        } 
-    },
+  computed: mapGetters(["userInfo"]),
   methods: {
     logout() {
       localStorage.removeItem("userData");

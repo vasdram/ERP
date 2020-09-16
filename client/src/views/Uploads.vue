@@ -1,8 +1,8 @@
 <template>
     <div class="wrapper ">
         <Uploads />
-        <div class="table-wrapper"  v-if="data.reports && data.reports.length > 0">
-            <Table :id="data['_id']" :report="data.reports" />
+        <div class="table-wrapper"  v-if="reportOne.reports && reportOne.reports.length > 0">
+            <Table :isPreview="false" :id="reportOne['_id']" :report="reportOne.reports || []" />
         </div>
     </div>
 </template>
@@ -21,8 +21,9 @@ import Table from "../components/Table"
 
 export default {
     computed: {
-        data() {
-            return this.$store.state.data
+        reportOne() {
+            // console.log(this.$store.getters)
+            return this.$store.getters.reportOne
         } 
     },
     components: {

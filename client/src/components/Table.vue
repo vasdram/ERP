@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="table-head">
+    <div class="table-head" v-if="isPreview">
         <button class="btn btn-primary mr-4" v-on:click="isShowFormHandler">Добавить отчет</button>
         <button class="btn btn-primary" v-on:click="deleteTable">Удалить таблицу</button>
     </div>
@@ -73,13 +73,14 @@ export default {
       this.isShowForm = !this.isShowForm
     },
     deleteTable() {
+      console.log(this.id)
        Axios.post("/api/table/delete", {id: this.id}, {headers: {
                 Authorization: `Bearer ${JSON.parse(localStorage.getItem("userData")).token}`
             }
         })
     }
   },
-  props: ["report", "id"],
+  props: ["report", "id", "isPreview"],
   components: {AddReportForm}
 };
 </script>
