@@ -120,8 +120,19 @@ router.post('/upload', auth, (req, res, next) => {
 
 router.post('/delete', auth, async (req, res) => {
   const del = await Report.findByIdAndDelete(req.body.id)
-  console.log(req.body.id);
+  
   res.json({"message": "table delete", "tableId": del['_id']})
+})
+
+router.post('/deleteRows', auth, (req, res) => {
+  req.body.rows.map(async (id) => {
+    await Report.deleteOne({idRow: id}, (err, result) => {
+      console.log(result)
+    })
+  })
+  
+  
+  res.json({"message": "test del"})
 })
 
 router.post('/addReport', auth, async (req, res) => {

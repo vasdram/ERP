@@ -49,8 +49,15 @@ export default {
 
     delReport(ctx: any, id: string) {
       ctx.commit("removeReport", id)
-    }
+    },
 
+    async delRows(ctx: any, data: any) {
+      const delRows = await axios.post("/api/table/deleteRows", data, {headers: {
+        // @ts-ignore
+        Authorization: `Bearer ${JSON.parse(localStorage.getItem("userData")).token}`
+        }
+      })
+    }
 
   },
   getters: {

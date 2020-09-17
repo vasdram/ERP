@@ -1,6 +1,7 @@
 const iconvlite = require('iconv-lite')
 const fs = require("fs")
 const path = require("path")
+const { v4: uuidv4 } = require("uuid")
 
 const readFileSync_encoding = (filename, encoding) => {
   var content = fs.readFileSync(path.join(__dirname + '/routes/uploads/' + filename));
@@ -19,7 +20,7 @@ const getData = (arr) => {
     i.map((item) => {
       if( item.indexOf("=") === -1 ) return;
       const index = item.indexOf("=") 
-      o["date"] = new Date
+      o["idRow"] = uuidv4()
       o[item.slice(0, index)] = item.slice(index + 1)
     })
     return o

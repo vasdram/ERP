@@ -2,14 +2,18 @@
   <div>
     <div class="table-head" v-if="isPreview">
         <button class="btn btn-primary mr-4" v-on:click="isShowFormHandler">Добавить отчет</button>
+        <button class="btn btn-primary mr-4" v-if="!!rows.length">Редактировать строку</button>
+        <button class="btn btn-primary mr-4" v-on:click="deleteRows" v-if="!!rows.length">Удалить строку</button>
         <button class="btn btn-primary" v-on:click="deleteTable">Удалить таблицу</button>
     </div>
+    
     <div>
       <AddReportForm :id="id" v-if="isShowForm"/>
     </div>
     <table class="table" :id="id">
       <thead>
         <tr>
+          <th scope="col"></th>
           <th scope="col">#</th>
           <th scope="col">Дата и время</th>
           <th scope="col">Номер документа</th>
@@ -25,11 +29,14 @@
           <th scope="col">Комментарий</th>
         </tr>
       </thead>
-      <tr v-for="(row, idx) in report" :key="row['Номер']">
+      <tr v-for="(row, idx) in report" :key="row['idRow']" :class="rows.includes(row['idRow']) ? 'active' : ''">
+        <th scope="row">
+          <input type="checkbox" v-model="rows" :value="row['idRow']" name="" id="">
+        </th>
         <th scope="row">{{idx++}}</th>
         <td contenteditable="true">{{row["Дата"]}}</td>
         <td contenteditable="true">{{row["Номер"]}}</td>
-        <td contenteditable="true">{{row["ВсегоПоступило"]}}</td>
+        <td contenteditable="true">{{row["Сумма"]}}</td>
         <td contenteditable="true">{{row["Плательщик"]}}</td>
         <td contenteditable="true">{{row["ВсегоСписано"]}}</td>
         <td contenteditable="true">{{row["НазначениеПлатежа"]}}</td>
@@ -58,6 +65,12 @@
 .table {
   font-size: 12px;
 }
+tr{
+  transition: all .3s;
+}
+tr.active{
+  background-color: rgba(0,0,0, .1);
+}
 </style>
 <script>
 import axios from 'axios';
@@ -66,7 +79,8 @@ import AddReportForm from "./AddReportForm";
 export default {
   data() {
     return {
-      isShowForm: false
+      isShowForm: false,
+      rows: []
     }
   },
   methods: {
@@ -78,10 +92,10 @@ export default {
                 Authorization: `Bearer ${JSON.parse(localStorage.getItem("userData")).token}`
             }
         })
-      console.log(del.data.tableId);
         this.$store.dispatch("delReport", del.data.tableId)
-
-
+    },
+    async deleteRows() {
+        this.$store.dispatch("delRows", {rows: this.rows})
     }
   },
   props: ["report", "id", "isPreview"],
