@@ -125,18 +125,24 @@ router.post('/delete', auth, async (req, res) => {
 })
 
 router.post('/addReport', auth, async (req, res) => {
-  
+  let data
   reportItem['Номер'] = req.body.number;
   reportItem['ВсегоПоступило'] = req.body.coming;
   reportItem['Плательщик'] = req.body.contractor;
   reportItem['ВсегоСписано'] = req.body.consumption;
   reportItem['НазначениеПлатежа'] = req.body.paymentDescription;
 
-  const data = await Report.findByIdAndUpdate(
+  await Report.findByIdAndUpdate(
   req.body.id, 
   {$push: {reports: reportItem}},
-  {safe: true, upsert: true})
- 
+  {safe: true, upsert: true},
+  function(err, upd) {
+    if(err) {
+    console.log(err);
+    } else {
+      data = upd
+    }
+  })
 
   // data[0].reports.push(reportItem);
   // data.update();

@@ -10,11 +10,16 @@ export default {
     },
     removeReport(state: any, id: string) {
       state.data = state.data.filter((item: any) => item["_id"] !== id)
-      console.log(state.data)
+     
     },
-    updateReport(state: any, id: string) {
-      state.data = state.data.filter((item: any) => item["_id"] !== id)
-      console.log(state.data)
+    updateReport(state: any, data: any) {
+      state.data = state.data.map((item: any) => {
+        if(item["_id"] === data["_id"]) {
+          item = data
+          return item
+        }
+      })
+      
     },
   },
   actions: {
@@ -36,8 +41,7 @@ export default {
           Authorization: `Bearer ${JSON.parse(localStorage.getItem("userData")).token}`
         }
       })
-
-      console.log("---addReport",responce)
+      ctx.commit("updateReport", responce.data)
     },
 
     delReport(ctx: any, id: string) {
