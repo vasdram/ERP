@@ -27,7 +27,7 @@
       </thead>
       <tr v-for="(row, idx) in report" :key="row['Номер']">
         <th scope="row">{{idx++}}</th>
-        <td contenteditable="true">{{row["date"].slice(0, 10)}}</td>
+        <td contenteditable="true">{{row["Дата"]}}</td>
         <td contenteditable="true">{{row["Номер"]}}</td>
         <td contenteditable="true">{{row["ВсегоПоступило"]}}</td>
         <td contenteditable="true">{{row["Плательщик"]}}</td>
@@ -74,7 +74,6 @@ export default {
       this.isShowForm = !this.isShowForm
     },
     async deleteTable() {
-      
        const del = await axios.post("/api/table/delete", {id: this.id}, {headers: {
                 Authorization: `Bearer ${JSON.parse(localStorage.getItem("userData")).token}`
             }

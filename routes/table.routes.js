@@ -132,9 +132,10 @@ router.post('/addReport', auth, async (req, res) => {
   reportItem['ВсегоСписано'] = req.body.consumption;
   reportItem['НазначениеПлатежа'] = req.body.paymentDescription;
 
-  const data = await Report.findOneAndUpdate({
-    _id: req.body.id
-  }, {reports: ["asdasdasda"]})
+  const data = await Report.findByIdAndUpdate(
+  req.body.id, 
+  {$push: {reports: reportItem}},
+  {safe: true, upsert: true})
  
 
   // data[0].reports.push(reportItem);

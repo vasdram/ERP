@@ -93,10 +93,7 @@ export default {
         operator: this.operator,
         comment: this.comment,
       }
-      Axios.post("/api/table/addReport", formData, {headers: {
-                Authorization: `Bearer ${JSON.parse(localStorage.getItem("userData")).token}`
-            }
-        })
+      this.$store.dispatch("addReport", formData)
     }
   }
 }
