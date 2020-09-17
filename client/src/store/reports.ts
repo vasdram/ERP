@@ -8,6 +8,10 @@ export default {
         setReports(state: any, data: any) {
           state.data = data
         },
+        removeReport(state: any, id: string) {
+          state.data = state.data.filter((item: any) => item["_id"] !== id)
+          console.log(state.data)
+        },
       },
       actions: {
           async getReports(ctx: any) {
@@ -17,6 +21,10 @@ export default {
               }})
 
               ctx.commit("setReports", responce.data)
+          },
+
+          delReport(ctx:any, id:string) {
+            ctx.commit("removeReport", id)
           }
 
           

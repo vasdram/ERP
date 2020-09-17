@@ -3,6 +3,7 @@
       <Table 
       v-for="(table, indx) in allReports" 
       :report="table['reports']"
+      :id="table['_id']"
       :isPreview="true"
       :key="indx" />
   </div>

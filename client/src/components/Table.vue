@@ -60,8 +60,9 @@
 }
 </style>
 <script>
-import Axios from 'axios';
+import axios from 'axios';
 import AddReportForm from "./AddReportForm";
+
 export default {
   data() {
     return {
@@ -72,12 +73,16 @@ export default {
     isShowFormHandler() {
       this.isShowForm = !this.isShowForm
     },
-    deleteTable() {
-      console.log(this.id)
-       Axios.post("/api/table/delete", {id: this.id}, {headers: {
+    async deleteTable() {
+      
+       const del = await axios.post("/api/table/delete", {id: this.id}, {headers: {
                 Authorization: `Bearer ${JSON.parse(localStorage.getItem("userData")).token}`
             }
         })
+      console.log(del.data.tableId);
+        this.$store.dispatch("delReport", del.data.tableId)
+
+
     }
   },
   props: ["report", "id", "isPreview"],
