@@ -15,10 +15,13 @@ export default {
     updateReport(state: any, data: any) {
       state.data = state.data.map((item: any) => {
         if(item["_id"] === data["_id"]) {
-          item = data
+          return {...item, ...{reports: data.reports}} 
+        } else {
           return item
         }
       })
+      
+     console.log(state.data);
       
     },
   },
