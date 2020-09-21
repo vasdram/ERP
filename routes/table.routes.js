@@ -124,15 +124,18 @@ router.post('/delete', auth, async (req, res) => {
   res.json({"message": "table delete", "tableId": del['_id']})
 })
 
-router.post('/deleteRows', auth, (req, res) => {
-  req.body.rows.map(async (id) => {
-    await Report.deleteOne({idRow: id}, (err, result) => {
-      console.log(result)
-    })
+router.post('/deleteRow', auth, async(req, res) => {
+  
+  const data = await Report.findById(req.body.id)
+
+  data.reports = data.reports.filter(item => {
+    return item.idRow !== req.body.row
   })
   
+  await data.save()
+ 
   
-  res.json({"message": "test del"})
+  res.json(data)
 })
 
 router.post('/addReport', auth, async (req, res) => {

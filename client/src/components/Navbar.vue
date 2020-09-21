@@ -21,6 +21,9 @@
         <router-link to="reports" tag="li" class="nav-item" active-class="active">
           <a class="nav-link" href="#">Отчеты</a>
         </router-link>
+        <router-link to="cashe" tag="li" class="nav-item" active-class="active">
+          <a class="nav-link" href="#">Касса</a>
+        </router-link>
         <li class="nav-item">
           <a class="nav-link" v-on:click.prevent="logout" href="#">Выйти</a>
         </li>

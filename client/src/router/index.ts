@@ -11,6 +11,12 @@ const routes: Array<RouteConfig> = [
     component: () => import("../views/Uploads.vue"),
   },
   {
+    path: "/cashe",
+    name: "Cash",
+    meta: { layout: "main", requiresAuth: true },
+    component: () => import("../views/Cash.vue"),
+  },
+  {
     path: "/reports",
     name: "Reports",
     meta: { layout: "main", requiresAuth: true },

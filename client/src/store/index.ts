@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import reports from './reports'
 import userInfo from './userInfo'
 import reportOne from './reportOne'
+import cash from './cash'
 
 Vue.use(Vuex)
 
@@ -10,7 +11,8 @@ export default new Vuex.Store({
   modules: {
     reports,
     userInfo,
-    reportOne
+    reportOne,
+    cash
   }
 })
 

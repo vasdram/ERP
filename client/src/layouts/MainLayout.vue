@@ -17,10 +17,11 @@ import Navbar from "../components/Navbar"
 import axios from "axios"
 import {mapActions} from 'vuex'
 export default {
-  methods: mapActions(["getReports", "getUser"]),
+  methods: mapActions(["getReports", "getUser", "geCash"]),
   mounted() {
     this.getUser();    
     this.getReports();    
+    this.geCash();    
   },
   components: {
     Navbar
